@@ -42,7 +42,7 @@ class MyFrame(wx.Frame):
         self.button_2.Bind(wx.EVT_BUTTON, self.OnClickedAdd)
 
         self.button_3 = wx.Button(self, wx.ID_ANY, "Del URL")
-        self.button_3.Bind(wx.EVT_BUTTON, self.OnClicked)
+        self.button_3.Bind(wx.EVT_BUTTON, self.OnClickedDel)
 
         self.button_4 = wx.Button(self, wx.ID_ANY, "Exit")
         self.button_4.Bind(wx.EVT_BUTTON, self.OnClickedExit)
@@ -77,6 +77,9 @@ class MyFrame(wx.Frame):
 
     def OnClickedAdd(self, event):
         self.grid_1.SetCellValue(0, 0, "hadourp")
+
+    def OnClickedDel(self, event):
+        self.grid_1.SetCellValue(0, 0, "")
 
     def OnClickedExit(self, event):
         self.Close()
