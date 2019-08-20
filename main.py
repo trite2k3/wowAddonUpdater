@@ -32,16 +32,15 @@ class MyFrame(wx.Frame):
         wx.Frame.__init__(self, *args, **kwds)
         self.SetSize((600, 800))
 
-        #self.grid_1 = wx.grid.Grid(self, wx.ID_ANY, size=(1, 0))
         self.grid_1 = wx.grid.Grid(self, wx.ID_ANY, size=(1, 0))
 
         self.button_1 = wx.Button(self, wx.ID_ANY, "OK")
-        self.button_1.Bind(wx.EVT_BUTTON,self.OnClicked)
+        self.button_1.Bind(wx.EVT_BUTTON,self.OnClickedOK)
 
-        self.button_2 = wx.Button(self, wx.ID_ANY, "Add URL")
+        self.button_2 = wx.Button(self, wx.ID_ANY, "+")
         self.button_2.Bind(wx.EVT_BUTTON, self.OnClickedAdd)
 
-        self.button_3 = wx.Button(self, wx.ID_ANY, "Del URL")
+        self.button_3 = wx.Button(self, wx.ID_ANY, "-")
         self.button_3.Bind(wx.EVT_BUTTON, self.OnClickedDel)
 
         self.button_4 = wx.Button(self, wx.ID_ANY, "Exit")
@@ -74,6 +73,10 @@ class MyFrame(wx.Frame):
     def OnClicked(self, event):
         button_1 = event.GetEventObject().GetLabel()
         print("Label of pressed button = ", button_1)
+
+    def OnClickedOK(self, event):
+        data = self.grid_1.GetSelectedCells()
+        print(data)
 
     def OnClickedAdd(self, event):
         self.grid_1.SetCellValue(0, 0, "hadourp")
