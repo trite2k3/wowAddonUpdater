@@ -75,7 +75,7 @@ class MyFrame(wx.Frame):
         print("Label of pressed button = ", button_1)
 
     def OnClickedOK(self, event):
-        data = self.grid_1.GetSelectedCells()
+        data = self.grid_1.GetCellValue(0,0)
         print(data)
 
     def OnClickedAdd(self, event):
