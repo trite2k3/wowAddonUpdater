@@ -28,6 +28,8 @@ import os
 
 import requests
 
+from zipfile import ZipFile
+
 class MyFrame(wx.Frame):
     def __init__(self, *args, **kwds):
         # begin wxGlade: MyFrame.__init__
@@ -52,7 +54,7 @@ class MyFrame(wx.Frame):
         self.button_5 = wx.Button(self, wx.ID_ANY, "Del Rows")
         self.button_5.Bind(wx.EVT_BUTTON, self.OnClickedDel)
 
-        self.button_6 = wx.Button(self, wx.ID_ANY, "Target Dir")
+        self.button_6 = wx.Button(self, wx.ID_ANY, "Target Path")
         self.button_6.Bind(wx.EVT_BUTTON, self.OnClickedPath)
 
         self.button_7 = wx.Button(self, wx.ID_ANY, "Exit")
@@ -126,16 +128,29 @@ class MyFrame(wx.Frame):
         #    print(self.grid_1.GetCellValue(counter,0))
         #    counter = counter + 1
         #
-        #fetch file with requests
-        filename = "file.data"
+        #first get values from grid
+        ## fetch file with requests
+        rows = self.grid_1.GetNumberRows()
+        counter = 0
+        while counter < rows:
+            url = self.grid_1.GetCellValue(counter, 0).strip('\n')
+            file_name = "/home/trite/PycharmProjects/wowaddonupdater/file.data"
+            r = requests.get(url)
+            file = open(file_name, 'wb')
+            for chunk in r.iter_content(100000):
+                file.write(chunk)
+            file.close()
 
-        url = ('https://github.com/LeftHandedGlove/WeaponSwingTimerAddon/archive/master.zip')
-        file_name = "/home/trite/PycharmProjects/wowaddonupdater/" + filename
-        r = requests.get(url)
-        file = open(file_name, 'wb')
-        for chunk in r.iter_content(100000):
-            file.write(chunk)
-        file.close()
+            #find path string
+            f = open("path.txt", "r")
+            if f.mode == "r":
+                lines = f.readlines()
+                print(str(lines))
+
+            #extract it to the right dir
+            with ZipFile('file.data', 'r') as zipObj:
+                zipObj.extractall('/home/trite/PycharmProjects/wowaddonupdater/')
+            counter = counter + 1
 
 
     def OnClickedSave(self, event):
