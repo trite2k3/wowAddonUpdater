@@ -71,18 +71,32 @@ class MyFrame(wx.Frame):
         # end wxGlade
 
     def OnClicked(self, event):
-        button_1 = event.GetEventObject().GetLabel()
-        print("Label of pressed button = ", button_1)
+        label = event.GetEventObject().GetLabel()
+        print("Label of pressed button = ", label)
 
     def OnClickedOK(self, event):
-        data = self.grid_1.GetCellValue(0,0)
-        print(data)
+        #data = self.grid_1.GetCellValue(0,0)
+        rows = self.grid_1.GetNumberRows()
+        #print(data + " " + str(rows))
+
+        counter = 0
+        while counter < rows:
+            print(self.grid_1.GetCellValue(counter,0))
+            counter = counter + 1
+
 
     def OnClickedAdd(self, event):
         self.grid_1.SetCellValue(0, 0, "hadourp")
+        self.grid_1.SetCellValue(1, 0, "hadourpen")
+        self.grid_1.SetCellValue(2, 0, "hachinatsuhadourpen")
 
     def OnClickedDel(self, event):
-        self.grid_1.SetCellValue(0, 0, "")
+        #self.grid_1.SetCellValue(0, 0, "")
+        rows = self.grid_1.GetNumberRows()
+        counter = 0
+        while counter < rows:
+            self.grid_1.SetCellValue(counter, 0, "")
+            counter = counter + 1
 
     def OnClickedExit(self, event):
         self.Close()
