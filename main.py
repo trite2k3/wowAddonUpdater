@@ -69,6 +69,10 @@ class MyFrame(wx.Frame):
                     # apparently the '\n' is present in the values as an ascii sign so strip it away
                     self.grid_1.SetCellValue(counter, 0, line.strip('\n'))
                     counter = counter + 1
+                    #try to extend the grid if not enough rows
+                    gridsize = self.grid_1.GetNumberRows()
+                    if gridsize < len(lines):
+                        self.grid_1.AppendRows(1)
             f.close()
 
     def __set_properties(self):
@@ -157,10 +161,16 @@ class MyFrame(wx.Frame):
                 # apparently the '\n' is present in the values as an ascii sign so strip it away
                 self.grid_1.SetCellValue(counter, 0, line.strip('\n'))
                 counter = counter + 1
+                # try to extend the grid if not enough rows
+                if counter > rows:
+                    self.grid_1.AppendRows(1)
         f.close()
 
     def OnClickedDel(self, event):
-        self.grid_1.DeleteRows(1)
+        #some extra stuff to make sure it only delets the last row
+        rows = self.grid_1.GetNumberRows()
+        #print(str(rows))
+        self.grid_1.DeleteRows(rows-1,1)
 
     def OnClickedAdd(self, event):
         self.grid_1.AppendRows(1)
