@@ -170,7 +170,7 @@ class MyFrame(wx.Frame):
         f.close()
 
     def OnClickedDel(self, event):
-        #some extra stuff to make sure it only delets the last row
+        #some extra stuff to make sure it only deletes the last row
         rows = self.grid_1.GetNumberRows()
         #print(str(rows))
         self.grid_1.DeleteRows(rows-1,1)
