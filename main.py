@@ -100,10 +100,10 @@ class MyFrame(wx.Frame):
         #loop through it and write a line per row
         counter = 0
         while counter < rows:
-            if counter == rows:
-                f.write(self.grid_1.GetCellValue(counter,0))
+            if counter + 1 == rows:
+                f.write(self.grid_1.GetCellValue(counter,0)) # + str(counter))
             else:
-                f.write(self.grid_1.GetCellValue(counter, 0) + "\n")
+                f.write(self.grid_1.GetCellValue(counter, 0) + "\n") #str(counter) + "\n")
             counter = counter + 1
         #close the file
         f.close()
