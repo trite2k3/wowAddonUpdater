@@ -26,6 +26,7 @@ import wx.grid
 
 import os
 
+import requests
 
 class MyFrame(wx.Frame):
     def __init__(self, *args, **kwds):
@@ -111,19 +112,29 @@ class MyFrame(wx.Frame):
         self.Layout()
         # end wxGlade
 
-    def OnClicked(self, event):
-        label = event.GetEventObject().GetLabel()
-        print("Label of pressed button = ", label)
+    #def OnClicked(self, event):
+    #    label = event.GetEventObject().GetLabel()
+    #    print("Label of pressed button = ", label)
 
     def OnClickedOK(self, event):
         #data = self.grid_1.GetCellValue(0,0)
-        rows = self.grid_1.GetNumberRows()
+        #rows = self.grid_1.GetNumberRows()
         #print(data + " " + str(rows))
+        #
+        #counter = 0
+        #while counter < rows:
+        #    print(self.grid_1.GetCellValue(counter,0))
+        #    counter = counter + 1
+        #
+        #fetch file with requests
+        url = ('https://mirrors.kernel.org/slackware/slackware64-current/COPYRIGHT.TXT')
+        file_name = "/home/trite/PycharmProjects/wowaddonupdater/file.data"
+        r = requests.get(url)
+        file = open(file_name, 'wb')
+        for chunk in r.iter_content(100000):
+            file.write(chunk)
+        file.close()
 
-        counter = 0
-        while counter < rows:
-            print(self.grid_1.GetCellValue(counter,0))
-            counter = counter + 1
 
     def OnClickedSave(self, event):
         #self.grid_1.SetCellValue(0, 0, "hadourp")
