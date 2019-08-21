@@ -118,7 +118,17 @@ class MyFrame(wx.Frame):
         #    counter = counter + 1
         #
         #new stuff, old was "del"
-        print("cannot be empty def")
+        #print("cannot be empty def")
+        #
+        #open the file for reading
+        counter=0
+        f = open("data.txt", "r")
+        if f.mode == "r":
+            lines = f.readlines()
+            for line in lines:
+                self.grid_1.SetCellValue(counter, 0, line)
+                counter = counter + 1
+        f.close()
 
     def OnClickedExit(self, event):
         self.Close()
@@ -130,24 +140,6 @@ class MyApp(wx.App):
         self.frame = MyFrame(None, wx.ID_ANY, "")
         self.SetTopWindow(self.frame)
         self.frame.Show()
-
-        #File stuff for loading and saving grid data
-        #open a file for writing and create it if it doesnt exist
-        #f= open("data.txt", "w+")
-        #just a test write
-        #f.write("this is a line\n")
-        #f.write("this is a new line\n")
-        #close the file
-        #f.close()
-
-        #reading the file (per line)
-        #f= open("data.txt", "r")
-        #if f.mode == "r":
-        #    lines = f.readlines()
-        #    for line in lines:
-        #        print(line)
-        #f.close()
-
         return True
 
 # end of class MyApp
