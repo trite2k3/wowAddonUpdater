@@ -58,6 +58,9 @@ class MyFrame(wx.Frame):
         self.__do_layout()
         # end wxGlade
 
+        #set the grid column size to be wider than default
+        self.grid_1.SetColSize(0,433)
+
         # initial load if data.txt exists
         if os.path.exists('./data.txt'):
             counter = 0
@@ -89,13 +92,15 @@ class MyFrame(wx.Frame):
         sizer_1 = wx.BoxSizer(wx.HORIZONTAL)
         sizer_2 = wx.BoxSizer(wx.VERTICAL)
         sizer_1.Add(self.grid_1, 1, wx.EXPAND, 0)
-        sizer_2.Add(self.button_1, 0, 0, 0)
-        sizer_2.Add(self.button_2, 0, 0, 0)
-        sizer_2.Add(self.button_3, 0, 0, 0)
-        sizer_2.Add(self.button_4, 0, 0, 0)
-        sizer_2.Add(self.button_5, 0, 0, 0)
-        sizer_2.Add(self.button_6, 0, 0, 0)
-        sizer_1.Add(sizer_2, 1, wx.EXPAND, 0)
+        #sizer_2.Add(self.button_1, 0, 0, 0)
+        sizer_2.Add(self.button_1, 0, wx.ALIGN_RIGHT, 0)
+        sizer_2.Add(self.button_2, 0, wx.ALIGN_RIGHT, 0)
+        sizer_2.Add(self.button_3, 0, wx.ALIGN_RIGHT, 0)
+        sizer_2.Add(self.button_4, 0, wx.ALIGN_RIGHT, 0)
+        sizer_2.Add(self.button_5, 0, wx.ALIGN_RIGHT, 0)
+        sizer_2.Add(self.button_6, 0, wx.ALIGN_RIGHT, 0)
+        #sizer_1.Add(sizer_2, 1, wx.EXPAND, 0)
+        sizer_1.Add(sizer_2, 0, wx.ALIGN_RIGHT, 0)
         self.SetSizer(sizer_1)
         self.Layout()
         # end wxGlade
