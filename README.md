@@ -5,7 +5,7 @@ have fun! (:
 
 add URL to zipfiles for addons
 
-press "target path" and add your wow installation path to the interface/addons folder
+press "target path" and add your wow installation-interface/addons folder
 
 TODO:
 support links that doesnt go directly to zipfile like */download
