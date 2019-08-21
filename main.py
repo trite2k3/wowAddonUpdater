@@ -134,7 +134,7 @@ class MyFrame(wx.Frame):
         counter = 0
         while counter < rows:
             url = self.grid_1.GetCellValue(counter, 0).strip('\n')
-            file_name = "/home/trite/PycharmProjects/wowaddonupdater/file.data"
+            file_name = "file.data"
             r = requests.get(url)
             file = open(file_name, 'wb')
             for chunk in r.iter_content(100000):
