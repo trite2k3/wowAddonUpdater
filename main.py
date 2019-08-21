@@ -66,6 +66,7 @@ class MyFrame(wx.Frame):
                 lines = f.readlines()
                 for line in lines:
                     #print(str(counter))
+                    # apparently the '\n' is present in the values as an ascii sign so strip it away
                     self.grid_1.SetCellValue(counter, 0, line.strip('\n'))
                     counter = counter + 1
             f.close()
@@ -122,7 +123,7 @@ class MyFrame(wx.Frame):
         #loop through it and write a line per row
         counter = 0
         while counter < rows:
-            #apparently the '\n' is present in the values as an ascii sign so trip it away
+            #apparently the '\n' is present in the values as an ascii sign so strip it away
             cellvalue = self.grid_1.GetCellValue(counter, 0).strip('\n')
             if cellvalue == "":
                 counter = counter +1
@@ -153,7 +154,7 @@ class MyFrame(wx.Frame):
                 if line == "":
                     counter = counter + 1
                     continue
-                # apparently the '\n' is present in the values as an ascii sign so trip it away
+                # apparently the '\n' is present in the values as an ascii sign so strip it away
                 self.grid_1.SetCellValue(counter, 0, line.strip('\n'))
                 counter = counter + 1
         f.close()
