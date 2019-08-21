@@ -78,7 +78,7 @@ class MyFrame(wx.Frame):
     def __set_properties(self):
         # begin wxGlade: MyFrame.__set_properties
         self.SetTitle("wowAddonUpdater")
-        self.grid_1.CreateGrid(10, 1)
+        self.grid_1.CreateGrid(1, 1)
         # end wxGlade
 
     def __do_layout(self):
