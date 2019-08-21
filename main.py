@@ -127,8 +127,10 @@ class MyFrame(wx.Frame):
         #    counter = counter + 1
         #
         #fetch file with requests
-        url = ('https://mirrors.kernel.org/slackware/slackware64-current/COPYRIGHT.TXT')
-        file_name = "/home/trite/PycharmProjects/wowaddonupdater/file.data"
+        filename = "file.data"
+
+        url = ('https://github.com/LeftHandedGlove/WeaponSwingTimerAddon/archive/master.zip')
+        file_name = "/home/trite/PycharmProjects/wowaddonupdater/" + filename
         r = requests.get(url)
         file = open(file_name, 'wb')
         for chunk in r.iter_content(100000):
