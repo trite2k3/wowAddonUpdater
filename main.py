@@ -42,8 +42,8 @@ class MyFrame(wx.Frame):
         self.button_2 = wx.Button(self, wx.ID_ANY, "Save")
         self.button_2.Bind(wx.EVT_BUTTON, self.OnClickedSave)
 
-        self.button_3 = wx.Button(self, wx.ID_ANY, "Add")
-        self.button_3.Bind(wx.EVT_BUTTON, self.OnClickedAdd)
+        self.button_3 = wx.Button(self, wx.ID_ANY, "Load")
+        self.button_3.Bind(wx.EVT_BUTTON, self.OnClickedLoad)
 
         self.button_4 = wx.Button(self, wx.ID_ANY, "Exit")
         self.button_4.Bind(wx.EVT_BUTTON, self.OnClickedExit)
@@ -123,7 +123,7 @@ class MyFrame(wx.Frame):
         f.close()
 
 
-    def OnClickedAdd(self, event):
+    def OnClickedLoad(self, event):
         #self.grid_1.SetCellValue(0, 0, "")
         #rows = self.grid_1.GetNumberRows()
         #counter = 0
@@ -132,17 +132,17 @@ class MyFrame(wx.Frame):
         #    counter = counter + 1
         #
         #new stuff, old was "del"
-        print("cannot be empty def")
+        #print("cannot be empty def")
         #
         #open the file for reading
-        #counter=0
-        #f = open("data.txt", "r")
-        #if f.mode == "r":
-        #    lines = f.readlines()
-        #    for line in lines:
-        #        self.grid_1.SetCellValue(counter, 0, line)
-        #        counter = counter + 1
-        #f.close()
+        counter=0
+        f = open("data.txt", "r")
+        if f.mode == "r":
+            lines = f.readlines()
+            for line in lines:
+                self.grid_1.SetCellValue(counter, 0, line)
+                counter = counter + 1
+        f.close()
 
     def OnClickedExit(self, event):
         self.Close()
