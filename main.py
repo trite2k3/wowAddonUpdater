@@ -45,8 +45,14 @@ class MyFrame(wx.Frame):
         self.button_3 = wx.Button(self, wx.ID_ANY, "Load")
         self.button_3.Bind(wx.EVT_BUTTON, self.OnClickedLoad)
 
-        self.button_4 = wx.Button(self, wx.ID_ANY, "Exit")
-        self.button_4.Bind(wx.EVT_BUTTON, self.OnClickedExit)
+        self.button_4 = wx.Button(self, wx.ID_ANY, "Add Rows")
+        self.button_4.Bind(wx.EVT_BUTTON, self.OnClickedAdd)
+
+        self.button_5 = wx.Button(self, wx.ID_ANY, "Del Rows")
+        self.button_5.Bind(wx.EVT_BUTTON, self.OnClickedDel)
+
+        self.button_6 = wx.Button(self, wx.ID_ANY, "Exit")
+        self.button_6.Bind(wx.EVT_BUTTON, self.OnClickedExit)
 
         self.__set_properties()
         self.__do_layout()
@@ -59,8 +65,8 @@ class MyFrame(wx.Frame):
             if f.mode == "r":
                 lines = f.readlines()
                 for line in lines:
-                    print(str(counter))
-                    self.grid_1.SetCellValue(counter, 0, line)
+                    #print(str(counter))
+                    self.grid_1.SetCellValue(counter, 0, line.strip('\n'))
                     counter = counter + 1
             f.close()
 
@@ -79,6 +85,8 @@ class MyFrame(wx.Frame):
         sizer_2.Add(self.button_2, 0, 0, 0)
         sizer_2.Add(self.button_3, 0, 0, 0)
         sizer_2.Add(self.button_4, 0, 0, 0)
+        sizer_2.Add(self.button_5, 0, 0, 0)
+        sizer_2.Add(self.button_6, 0, 0, 0)
         sizer_1.Add(sizer_2, 1, wx.EXPAND, 0)
         self.SetSizer(sizer_1)
         self.Layout()
@@ -102,11 +110,11 @@ class MyFrame(wx.Frame):
         #self.grid_1.SetCellValue(0, 0, "hadourp")
         #self.grid_1.SetCellValue(1, 0, "hadourpen")
         #self.grid_1.SetCellValue(2, 0, "hachinatsuhadourpen")
-        #
-        #new stuff, old was "add"
-        #
+
         # open a file for writing and create it if it doesnt exist
         f = open("data.txt", "w+")
+        #wipe the file
+        f.truncate(0)
         #blahgoeshere
         #
         #get number of rows in grid
@@ -114,10 +122,15 @@ class MyFrame(wx.Frame):
         #loop through it and write a line per row
         counter = 0
         while counter < rows:
+            #apparently the '\n' is present in the values as an ascii sign so trip it away
+            cellvalue = self.grid_1.GetCellValue(counter, 0).strip('\n')
+            if cellvalue == "":
+                counter = counter +1
+                continue
             if counter + 1 == rows:
-                f.write(self.grid_1.GetCellValue(counter,0)) # + str(counter))
+                f.write(cellvalue) # + str(counter))
             else:
-                f.write(self.grid_1.GetCellValue(counter, 0) + "\n") #str(counter) + "\n")
+                f.write(cellvalue + "\n") #str(counter) + "\n")
             counter = counter + 1
         #close the file
         f.close()
@@ -125,24 +138,31 @@ class MyFrame(wx.Frame):
 
     def OnClickedLoad(self, event):
         #self.grid_1.SetCellValue(0, 0, "")
-        #rows = self.grid_1.GetNumberRows()
-        #counter = 0
-        #while counter < rows:
-        #    self.grid_1.SetCellValue(counter, 0, "")
-        #    counter = counter + 1
-        #
-        #new stuff, old was "del"
-        #print("cannot be empty def")
-        #
+        rows = self.grid_1.GetNumberRows()
+        counter = 0
+        while counter < rows:
+            self.grid_1.SetCellValue(counter, 0, "")
+            counter = counter + 1
+
         #open the file for reading
         counter=0
         f = open("data.txt", "r")
         if f.mode == "r":
             lines = f.readlines()
             for line in lines:
-                self.grid_1.SetCellValue(counter, 0, line)
+                if line == "":
+                    counter = counter + 1
+                    continue
+                # apparently the '\n' is present in the values as an ascii sign so trip it away
+                self.grid_1.SetCellValue(counter, 0, line.strip('\n'))
                 counter = counter + 1
         f.close()
+
+    def OnClickedDel(self, event):
+        self.grid_1.DeleteRows(1)
+
+    def OnClickedAdd(self, event):
+        self.grid_1.AppendRows(1)
 
     def OnClickedExit(self, event):
         self.Close()
