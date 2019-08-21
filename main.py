@@ -190,16 +190,18 @@ class MyFrame(wx.Frame):
         self.grid_1.AppendRows(1)
 
     def OnClickedPath(self, event):
-        #create if not exists, open in write mode.
+        dlg = wx.TextEntryDialog(self, "Please input the path to your WoW-interface folder.")
+        dlg.ShowModal()
+        askresult = dlg.GetValue()
+        dlg.Destroy()
+        #create if not exists, open in write mode
         f = open("path.txt", "w+")
         #truncate (del)
         f.truncate(0)
-        #blah
-        #
-        #
-        f.write("interface path")
+        #write to file
+        f.write(askresult)
+        #close file
         f.close()
-
 
     def OnClickedExit(self, event):
         self.Close()
