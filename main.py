@@ -51,8 +51,11 @@ class MyFrame(wx.Frame):
         self.button_5 = wx.Button(self, wx.ID_ANY, "Del Rows")
         self.button_5.Bind(wx.EVT_BUTTON, self.OnClickedDel)
 
-        self.button_6 = wx.Button(self, wx.ID_ANY, "Exit")
-        self.button_6.Bind(wx.EVT_BUTTON, self.OnClickedExit)
+        self.button_6 = wx.Button(self, wx.ID_ANY, "Target Dir")
+        self.button_6.Bind(wx.EVT_BUTTON, self.OnClickedPath)
+
+        self.button_7 = wx.Button(self, wx.ID_ANY, "Exit")
+        self.button_7.Bind(wx.EVT_BUTTON, self.OnClickedExit)
 
         self.__set_properties()
         self.__do_layout()
@@ -60,6 +63,8 @@ class MyFrame(wx.Frame):
 
         #set the grid column size to be wider than default
         self.grid_1.SetColSize(0,433)
+        #set col name instead of "A"
+        self.grid_1.SetColLabelValue(0,"ZIP URL")
 
         # initial load if data.txt exists
         if os.path.exists('./data.txt'):
@@ -99,6 +104,7 @@ class MyFrame(wx.Frame):
         sizer_2.Add(self.button_4, 0, wx.ALIGN_RIGHT, 0)
         sizer_2.Add(self.button_5, 0, wx.ALIGN_RIGHT, 0)
         sizer_2.Add(self.button_6, 0, wx.ALIGN_RIGHT, 0)
+        sizer_2.Add(self.button_7, 0, wx.ALIGN_RIGHT, 0)
         #sizer_1.Add(sizer_2, 1, wx.EXPAND, 0)
         sizer_1.Add(sizer_2, 0, wx.ALIGN_RIGHT, 0)
         self.SetSizer(sizer_1)
@@ -182,6 +188,18 @@ class MyFrame(wx.Frame):
 
     def OnClickedAdd(self, event):
         self.grid_1.AppendRows(1)
+
+    def OnClickedPath(self, event):
+        #create if not exists, open in write mode.
+        f = open("path.txt", "w+")
+        #truncate (del)
+        f.truncate(0)
+        #blah
+        #
+        #
+        f.write("interface path")
+        f.close()
+
 
     def OnClickedExit(self, event):
         self.Close()
