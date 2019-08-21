@@ -144,12 +144,12 @@ class MyFrame(wx.Frame):
             #find path string
             f = open("path.txt", "r")
             if f.mode == "r":
-                lines = f.readlines()
-                print(str(lines))
+                pathdata = f.read()
+                #print(str(pathdata))
 
             #extract it to the right dir
             with ZipFile('file.data', 'r') as zipObj:
-                zipObj.extractall('/home/trite/PycharmProjects/wowaddonupdater/')
+                zipObj.extractall(pathdata)
             counter = counter + 1
 
 
