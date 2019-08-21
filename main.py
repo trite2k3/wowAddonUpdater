@@ -37,11 +37,11 @@ class MyFrame(wx.Frame):
         self.button_1 = wx.Button(self, wx.ID_ANY, "OK")
         self.button_1.Bind(wx.EVT_BUTTON,self.OnClickedOK)
 
-        self.button_2 = wx.Button(self, wx.ID_ANY, "+")
-        self.button_2.Bind(wx.EVT_BUTTON, self.OnClickedAdd)
+        self.button_2 = wx.Button(self, wx.ID_ANY, "Save")
+        self.button_2.Bind(wx.EVT_BUTTON, self.OnClickedSave)
 
-        self.button_3 = wx.Button(self, wx.ID_ANY, "-")
-        self.button_3.Bind(wx.EVT_BUTTON, self.OnClickedDel)
+        self.button_3 = wx.Button(self, wx.ID_ANY, "Load")
+        self.button_3.Bind(wx.EVT_BUTTON, self.OnClickedLoad)
 
         self.button_4 = wx.Button(self, wx.ID_ANY, "Exit")
         self.button_4.Bind(wx.EVT_BUTTON, self.OnClickedExit)
@@ -84,19 +84,41 @@ class MyFrame(wx.Frame):
             print(self.grid_1.GetCellValue(counter,0))
             counter = counter + 1
 
-
-    def OnClickedAdd(self, event):
-        self.grid_1.SetCellValue(0, 0, "hadourp")
-        self.grid_1.SetCellValue(1, 0, "hadourpen")
-        self.grid_1.SetCellValue(2, 0, "hachinatsuhadourpen")
-
-    def OnClickedDel(self, event):
-        #self.grid_1.SetCellValue(0, 0, "")
+    def OnClickedSave(self, event):
+        #self.grid_1.SetCellValue(0, 0, "hadourp")
+        #self.grid_1.SetCellValue(1, 0, "hadourpen")
+        #self.grid_1.SetCellValue(2, 0, "hachinatsuhadourpen")
+        #
+        #new stuff, old was "add"
+        #
+        # open a file for writing and create it if it doesnt exist
+        f = open("data.txt", "w+")
+        #blahgoeshere
+        #
+        #get number of rows in grid
         rows = self.grid_1.GetNumberRows()
+        #loop through it and write a line per row
         counter = 0
         while counter < rows:
-            self.grid_1.SetCellValue(counter, 0, "")
+            if counter == rows:
+                f.write(self.grid_1.GetCellValue(counter,0))
+            else:
+                f.write(self.grid_1.GetCellValue(counter, 0) + "\n")
             counter = counter + 1
+        #close the file
+        f.close()
+
+
+    def OnClickedLoad(self, event):
+        #self.grid_1.SetCellValue(0, 0, "")
+        #rows = self.grid_1.GetNumberRows()
+        #counter = 0
+        #while counter < rows:
+        #    self.grid_1.SetCellValue(counter, 0, "")
+        #    counter = counter + 1
+        #
+        #new stuff, old was "del"
+        print("cannot be empty def")
 
     def OnClickedExit(self, event):
         self.Close()
@@ -108,6 +130,24 @@ class MyApp(wx.App):
         self.frame = MyFrame(None, wx.ID_ANY, "")
         self.SetTopWindow(self.frame)
         self.frame.Show()
+
+        #File stuff for loading and saving grid data
+        #open a file for writing and create it if it doesnt exist
+        #f= open("data.txt", "w+")
+        #just a test write
+        #f.write("this is a line\n")
+        #f.write("this is a new line\n")
+        #close the file
+        #f.close()
+
+        #reading the file (per line)
+        #f= open("data.txt", "r")
+        #if f.mode == "r":
+        #    lines = f.readlines()
+        #    for line in lines:
+        #        print(line)
+        #f.close()
+
         return True
 
 # end of class MyApp
