@@ -183,7 +183,7 @@ class MyFrame(wx.Frame):
                             for chunk in req.iter_content(100000):
                                 file.write(chunk)
                             file.close()
-                            continue
+                            break
                 file.close()
             else:
                 print("probably normal zipfile, at least not text or html format")
