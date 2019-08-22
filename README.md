@@ -1,15 +1,16 @@
 # wowAddonUpdater
-work in progress, just uploading to be able to see it on different machines
+Amateure stuff, but have fun!
 
-have fun! (:
+note that you prob. should wipe your interface folder before pressing "OK"
+
+also if you erase some line in the middle, you can get rid of it by saving and loading
+and then press "Del Rows" because it will sort to bottom
 
 add URL to zipfiles for addons
 
 press "target path" and add your wow installation-interface/addons folder
 
 TODO:
-
-support links that doesnt go directly to zipfile like */download
 
 support other format than zipfiles
 

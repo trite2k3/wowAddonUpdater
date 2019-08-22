@@ -30,6 +30,8 @@ import requests
 
 from zipfile import ZipFile
 
+from bs4 import BeautifulSoup
+
 class MyFrame(wx.Frame):
     def __init__(self, *args, **kwds):
         # begin wxGlade: MyFrame.__init__
@@ -135,6 +137,7 @@ class MyFrame(wx.Frame):
         while counter < rows:
             url = self.grid_1.GetCellValue(counter, 0).strip('\n')
             file_name = "file.data"
+
             r = requests.get(url)
             file = open(file_name, 'wb')
             for chunk in r.iter_content(100000):
@@ -146,6 +149,41 @@ class MyFrame(wx.Frame):
             if f.mode == "r":
                 pathdata = f.read()
                 #print(str(pathdata))
+
+            #wowinterface doesnt give you the link directly and has bs which makes it hard to download
+            #try to find the link and download anyways
+            h = requests.head(url, allow_redirects=True)
+            header = h.headers
+            content_type = header.get('content-type')
+            if 'text' in content_type.lower():
+                print("text-type found in data downloaded")
+                #file = open("file.data", "r")
+                #if file.mode == "r":
+                #    elsefile = file.readlines()
+                #    for line in elsefile:
+                #        if line.find(".zip") != -1:
+                #            print("found " + line)
+            if 'html' in content_type.lower():
+                print("html-type found in data downloaded")
+                file = open("file.data", "r")
+                if file.mode == "r":
+                    elsefile = file.readlines()
+                    for line in elsefile:
+                        if line.find(".zip") != -1:
+                            #print("found " + line)
+                            download = BeautifulSoup(line, "html.parser")#.a.get('href')
+                            links = [a.get('href') for a in download.find_all('a', href=True)]
+                            #print(links[0])
+                            link = links[0]
+                            r = requests.get(link)
+                            file = open(file_name, 'wb')
+                            for chunk in r.iter_content(100000):
+                                file.write(chunk)
+                            file.close()
+                            continue
+                file.close()
+            else:
+                print("probably normal zipfile, at least not text or html format")
 
             #extract it to the right dir
             with ZipFile('file.data', 'r') as zipObj:
