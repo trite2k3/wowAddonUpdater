@@ -178,9 +178,9 @@ class MyFrame(wx.Frame):
                             href = link.get('href')
                             #print(" ")
                             #print(href)
-                            r = requests.get(href)
+                            req = requests.get(href)
                             file = open(file_name, 'wb')
-                            for chunk in r.iter_content(100000):
+                            for chunk in req.iter_content(100000):
                                 file.write(chunk)
                             file.close()
                             continue
