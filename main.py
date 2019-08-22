@@ -171,10 +171,7 @@ class MyFrame(wx.Frame):
                     for line in elsefile:
                         if line.find(".zip") != -1:
                             #print("found " + line)
-                            #download = BeautifulSoup(line, "html.parser")#.a.get('href')
                             download = BeautifulSoup(line, "html.parser").a.get('href')
-                            #links = [a.get('href') for a in download.find_all('a', href=True)]
-                            #links = download.find_all('a', href=True).a.get('href')
                             print(download)
                             r = requests.get(HADOURPEN)
                             file = open(file_name, 'wb')
