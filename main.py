@@ -174,6 +174,7 @@ class MyFrame(wx.Frame):
                             download = BeautifulSoup(line, "html.parser")
                             #print(download)
                             link = download.find("a")
+                            print(link)
                             href = link.get('href')
                             #print(" ")
                             print(href)
