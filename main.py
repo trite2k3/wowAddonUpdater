@@ -173,9 +173,8 @@ class MyFrame(wx.Frame):
                             #print("found " + line)
                             download = BeautifulSoup(line, "html.parser")#.a.get('href')
                             links = [a.get('href') for a in download.find_all('a', href=True)]
-                            #print(links[0])
-                            link = links[0]
-                            r = requests.get(link)
+                            print(links[0])
+                            r = requests.get(links[0])
                             file = open(file_name, 'wb')
                             for chunk in r.iter_content(100000):
                                 file.write(chunk)
