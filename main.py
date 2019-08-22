@@ -174,10 +174,10 @@ class MyFrame(wx.Frame):
                             download = BeautifulSoup(line, "html.parser")
                             #print(download)
                             link = download.find("a")
-                            print(link)
+                            #print(link)
                             href = link.get('href')
                             #print(" ")
-                            print(href)
+                            #print(href)
                             r = requests.get(href)
                             file = open(file_name, 'wb')
                             for chunk in r.iter_content(100000):
