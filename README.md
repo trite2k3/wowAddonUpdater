@@ -18,7 +18,16 @@ everything else
 
 btw wxGlade rox!
 
+
+
 dep:
+
+pathlib2
+
 wxpython
+
 beautifulsoup4
-bs4 (?)
+
+bs4
+
+
