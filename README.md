@@ -17,3 +17,8 @@ support other format than zipfiles
 everything else
 
 btw wxGlade rox!
+
+dep:
+wxpython
+beautifulsoup4
+bs4 (?)
