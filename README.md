@@ -24,14 +24,4 @@ btw wxGlade rox!
 
 dep:
 
-pathlib2
-
-wxpython
-
-beautifulsoup4
-
-bs4
-
-requests
-
-
+pip3 install attrdict ws wxPython pathlib2 bs4 beautifulsoup4 urllib3 certifi requests
