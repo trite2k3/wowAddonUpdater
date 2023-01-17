@@ -192,6 +192,7 @@ class MyFrame(wx.Frame):
             with ZipFile('file.data', 'r') as zipObj:
                 zipObj.extractall(pathdata)
             counter = counter + 1
+        print("Done processing addon list.")
 
 
     def OnClickedSave(self, event):
