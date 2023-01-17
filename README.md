@@ -10,6 +10,8 @@ enter URL to zipfiles for addon in the list
 
 press "target path" and add your wow installation-interface/addons folder
 
+
+google: site:wowinterface.com wotlk addon tacotip
 ---
 
 TODO:
