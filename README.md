@@ -32,4 +32,6 @@ beautifulsoup4
 
 bs4
 
+requests
+
 
