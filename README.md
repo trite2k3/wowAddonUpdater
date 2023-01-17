@@ -12,6 +12,21 @@ press "target path" and add your wow installation-interface/addons folder
 
 google: site:wowinterface.com wotlk addon tacotip
 
+Example output:
+---
+/home/trite/PycharmProjects/pythonProject/venv/bin/python /home/trite/PycharmProjects/pythonProject/main.py 
+probably normal zipfile, at least not text or html format
+text-type found in data downloaded
+html-type found in data downloaded
+text-type found in data downloaded
+html-type found in data downloaded
+text-type found in data downloaded
+html-type found in data downloaded
+Done processing addon list.
+
+Process finished with exit code 0
+---
+
 
 TODO:
 ---
