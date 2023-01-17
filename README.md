@@ -10,11 +10,11 @@ enter URL to zipfiles for addon in the list
 
 press "target path" and add your wow installation-interface/addons folder
 
-
 google: site:wowinterface.com wotlk addon tacotip
----
+
 
 TODO:
+---
 
 support other format than zipfiles
 
@@ -22,8 +22,7 @@ everything else
 
 btw wxGlade rox!
 
+DEP:
 ---
-
-dep:
 
 pip3 install attrdict wxPython pathlib2 bs4 beautifulsoup4 urllib3 certifi requests
