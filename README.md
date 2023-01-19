@@ -12,6 +12,9 @@ press "target path" and add your wow installation-interface/addons folder
 
 google: site:wowinterface.com wotlk addon tacotip
 
+
+![alt text](https://github.com/trite2k3/wowAddonUpdater/blob/master/screen.png?raw=true)
+
 Example output:
 ---
 ```
